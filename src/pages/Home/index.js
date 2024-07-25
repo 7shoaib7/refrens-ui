@@ -1,18 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react'
 //mui-component
 import { Grid } from '@mui/material';
+import CircularProgress from '@mui/joy/CircularProgress';
 //css
 import "./Home.css"
 //custom-component
 import SelectFilter from '../../components/SelectFilter';
+import SearchTextField from '../../components/SearchTextField';
+import CharacterCard from '../../components/CharacterCard';
 import useDebounce from '../../custom/debounce';
 //constants
 import { statusOptions, genderOptions, speciesOptions } from '../../constants/filterCharacterOptions';
-import SearchTextField from '../../components/SearchTextField';
 
 //services
-import { getCharacters, getFilteredCharacters } from '../../services/rickAndMortyApi';
-import CharacterCard from '../../components/CharacterCard';
+import {  getFilteredCharacters } from '../../services/rickAndMortyApi';
+
 
 const Home = () => {
     const [status, setStatus] = useState('');
@@ -47,7 +49,7 @@ const Home = () => {
     const fetchFilteredCharacterData = async () => {
         setLoader(true);
         try {
-            const response = await getFilteredCharacters(debouncedSearchValue, status, species, gender,page);
+            const response = await getFilteredCharacters(debouncedSearchValue, status, species, gender, page);
             const result = response.results;
 
             if (page === 1) {
@@ -65,9 +67,9 @@ const Home = () => {
 
     useEffect(() => {
         fetchFilteredCharacterData();
-    }, [debouncedSearchValue, status, species, gender,page]);
+    }, [debouncedSearchValue, status, species, gender, page]);
 
-    const handleInfiniteScroll =() => {
+    const handleInfiniteScroll = () => {
         if (
             window.innerHeight + document.documentElement.scrollTop + 1 >=
             document.documentElement.scrollHeight
@@ -120,8 +122,8 @@ const Home = () => {
                             <CharacterCard key={cardData.id} {...cardData} />
                         </Grid>
                     )) : null}
-
                 </Grid>
+                {loader && <div className="loader"><CircularProgress  color="warning" /></div>}
             </div>
         </div>
     )

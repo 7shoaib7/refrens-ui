@@ -30,15 +30,15 @@ const Navbar = () => {
 
     const menuItems = [
         { text: 'Home', link: '/' },
-        { text: 'Episodes', link: '/episode' },
-        { text: 'Location', link: '/location' },
+        { text: 'Episodes', link: '/episodes' },
+        { text: 'Location', link: '/locations' },
     ];
 
     return (
         <AppBar position="static" className="navbar">
             <div className="navbar-content">
                 <div className="nav-logo">
-                    <img src={rickAndMortyLogo} alt="rickAndMortyLogo" className='nav-logo-img' />
+                    <img src={rickAndMortyLogo} alt="rickAndMortyLogo" className='nav-logo-img' onClick={()=>navigate("/")}/>
                 </div>
                 {isMobile ? (
                     <>
