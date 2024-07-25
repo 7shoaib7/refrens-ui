@@ -65,6 +65,8 @@ const CharacterProfile = () => {
             //    console.log("location",locationResponse)
             //    console.log("episode",episodeResponses)
 
+            const allEpisodeData = Array.isArray(episodeResponses) ? episodeResponses : [episodeResponses]
+
             if (locationResponse !== null) {
                 const locationData = {
                     ...locationResponse,
@@ -74,8 +76,8 @@ const CharacterProfile = () => {
             }
 
 
-            if (episodeResponses.length) {
-                const allEpisodes = episodeResponses.map((ep) => {
+            if (allEpisodeData.length) {
+                const allEpisodes = allEpisodeData.map((ep) => {
                     delete ep.characters
                     return ep
                 })
