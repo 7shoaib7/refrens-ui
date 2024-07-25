@@ -38,7 +38,7 @@ const Navbar = () => {
         <AppBar position="static" className="navbar">
             <div className="navbar-content">
                 <div className="nav-logo">
-                    <img src={rickAndMortyLogo} alt="rickAndMortyLogo" className='nav-logo-img' onClick={()=>navigate("/")}/>
+                    <img src={rickAndMortyLogo} alt="rickAndMortyLogo" className='nav-logo-img' onClick={() => handleNavigation({ text: 'Home', link: '/' })} />
                 </div>
                 {isMobile ? (
                     <>
@@ -54,8 +54,9 @@ const Navbar = () => {
                                 flexShrink: 0,
                                 zIndex: theme.zIndex.drawer + 1,
                                 '& .MuiDrawer-paper': {
-                                  width: '50%',
-                                },}}
+                                    width: '50%',
+                                },
+                            }}
                             PaperProps={{ sx: { width: '50%' } }}
                         >
                             <List>
