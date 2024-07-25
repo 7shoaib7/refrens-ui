@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 //mui-component
-import { Grid } from '@mui/material';
+import { Grid, Button } from '@mui/material';
 import CircularProgress from '@mui/joy/CircularProgress';
 //css
 import "./Home.css"
@@ -13,7 +13,7 @@ import useDebounce from '../../custom/debounce';
 import { statusOptions, genderOptions, speciesOptions } from '../../constants/filterCharacterOptions';
 
 //services
-import {  getFilteredCharacters } from '../../services/rickAndMortyApi';
+import { getFilteredCharacters } from '../../services/rickAndMortyApi';
 import useInfiniteScroll from '../../custom/useInfiniteScroll';
 
 
@@ -47,6 +47,16 @@ const Home = () => {
         setSpecies(event.target.value);
     };
 
+    const handleReset = () => {
+        if (status.length || gender.length || debouncedSearchValue.length || page !== 1 ) {
+            setStatus('');
+            setGender('');
+            setSpecies('');
+            setSearchValue('');
+            setPage(1);
+        }
+    };
+
 
     const fetchFilteredCharacterData = async () => {
         setLoader(true);
@@ -73,12 +83,12 @@ const Home = () => {
     }, [debouncedSearchValue, status, species, gender, page]);
 
 
-   // Using the useInfiniteScroll hook to trigger fetchFilteredCharacterData callback
-        useInfiniteScroll(() => {
-            if (page < totalPages) {
-                setPage((prevPage) => prevPage + 1);
-            }
-        });
+    // Using the useInfiniteScroll hook to trigger fetchFilteredCharacterData callback
+    useInfiniteScroll(() => {
+        if (page < totalPages) {
+            setPage((prevPage) => prevPage + 1);
+        }
+    });
 
 
 
@@ -109,6 +119,24 @@ const Home = () => {
                     onChange={handleSpeciesChange}
                     options={speciesOptions}
                 />
+                <Button
+                    variant="outlined"
+                    color="warning"
+                    onClick={handleReset}
+                    sx={{
+                        borderColor: 'rgb(255, 152, 0)',
+                        color: 'rgb(255, 152, 0)',
+                        width: "6rem",
+                        '&:hover': {
+                            borderColor: 'rgb(255, 152, 0)',
+                            backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                        }
+                    }}
+
+                >
+                    Reset
+                </Button>
+
             </div>
 
             <div className="character-list">
@@ -119,7 +147,7 @@ const Home = () => {
                         </Grid>
                     )) : null}
                 </Grid>
-                {loader && <div className="loader"><CircularProgress  color="warning" /></div>}
+                {loader && <div className="loader"><CircularProgress color="warning" /></div>}
             </div>
         </div>
     )
