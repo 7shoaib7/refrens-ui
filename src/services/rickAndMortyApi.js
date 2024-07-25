@@ -13,6 +13,9 @@ const fetchFromApi = async (endpoint) => {
   }
 };
 
+
+/*-----CHARACTER-----*/ 
+
 // Get all characters with optional filters and pagination
 export const getCharacters = async (filters = {}, page = 1) => {
   const query = new URLSearchParams({ ...filters, page }).toString();
@@ -23,6 +26,16 @@ export const getCharacters = async (filters = {}, page = 1) => {
 export const getCharacterById = async (id) => {
   return fetchFromApi(`character/${id}`);
 };
+
+// Get multiple characters by IDs
+export const getCharactersByIds = async (ids) => {
+    const idsParam = Array.isArray(ids) ? ids.join(',') : ids;
+    return fetchFromApi(`character/${idsParam}`);
+  };
+  
+
+
+  /*-----EPISODE-----*/ 
 
 // Get all episodes with optional filters and pagination
 export const getEpisodes = async (filters = {}, page = 1) => {
@@ -35,6 +48,15 @@ export const getEpisodeById = async (id) => {
   return fetchFromApi(`episode/${id}`);
 };
 
+// Get multiple episodes by IDs or array
+export const getEpisodesByIds = async (ids) => {
+    const idsParam = Array.isArray(ids) ? ids.join(',') : ids;
+    return fetchFromApi(`episode/${idsParam}`);
+  };
+  
+
+   /*-----LOCATION----*/ 
+
 // Get all locations with optional filters and pagination
 export const getLocations = async (filters = {}, page = 1) => {
   const query = new URLSearchParams({ ...filters, page }).toString();
@@ -46,11 +68,18 @@ export const getLocationById = async (id) => {
   return fetchFromApi(`location/${id}`);
 };
 
-//filters with pagination
+// Get multiple locations by IDs or array
+export const getLocationsByIds = async (ids) => {
+    const idsParam = Array.isArray(ids) ? ids.join(',') : ids;
+    return fetchFromApi(`location/${idsParam}`);
+  };
+  
+
+/*-----Filters with pagination------*/
 
 // Filters for characters
-export const getFilteredCharacters = async (name, status, species, type, gender, page = 1) => {
-  const filters = { name, status, species, type, gender };
+export const getFilteredCharacters = async (name, status, species, gender, page = 1) => {
+  const filters = { name, status, species, gender };
   return getCharacters(filters, page);
 };
 
