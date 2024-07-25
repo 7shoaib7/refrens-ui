@@ -23,6 +23,7 @@ const Home = () => {
     const [species, setSpecies] = useState('');
     const [searchValue, setSearchValue] = useState('');
     const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [loader, setLoader] = useState(false);
     const [notFound, setNotFound] = useState(false);
     const [characterData, setCharacterData] = useState([])
@@ -59,6 +60,7 @@ const Home = () => {
                 setCharacterData((prev) => [...prev, ...result]);
             }
             setNotFound(false)
+            setTotalPages(response.info.pages);
         } catch (err) {
             setNotFound(true)
         } finally {
@@ -73,7 +75,7 @@ const Home = () => {
 
    // Using the useInfiniteScroll hook to trigger fetchFilteredCharacterData callback
         useInfiniteScroll(() => {
-            if (page < 42) {
+            if (page < totalPages) {
                 setPage((prevPage) => prevPage + 1);
             }
         });
@@ -112,8 +114,8 @@ const Home = () => {
             <div className="character-list">
                 <Grid container spacing={2}>
                     {characterData.length ? characterData.map((cardData) => (
-                        <Grid item xs={12} md={6} lg={4}>
-                            <CharacterCard key={cardData.id} {...cardData} />
+                        <Grid item xs={12} md={6} lg={4} key={cardData.id}>
+                            <CharacterCard  {...cardData} />
                         </Grid>
                     )) : null}
                 </Grid>

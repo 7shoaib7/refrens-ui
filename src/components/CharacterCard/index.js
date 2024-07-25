@@ -7,7 +7,6 @@ const CharacterCard = ({id, name, status, species, location, image }) => {
 const navigate = useNavigate()
 
     const handleCard =()=>{
-        console.log("id",id)
         navigate(`/${id}`)
     }
 

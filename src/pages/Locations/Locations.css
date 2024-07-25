@@ -1,9 +1,9 @@
-.episodes{
+.locations{
     margin-top: 4rem;
     min-height: 100vh;
 }
 
-.episodes-filter{
+.locations-filter{
     margin-top: 4rem;
     padding: 1rem;
     display: grid;
@@ -11,6 +11,6 @@
     gap: 1rem
 }
 
-.episodes-list{
+.locations-list{
     margin-top:4rem
 }

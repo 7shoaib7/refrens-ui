@@ -1,14 +1,14 @@
 import { useEffect, useCallback } from 'react';
 
-const useInfiniteScroll = (loadMore, threshold = 1) => {
+const useInfiniteScroll = (loadMore) => {
     const handleScroll = useCallback(() => {
         if (
-            window.innerHeight + document.documentElement.scrollTop + threshold >=
+            window.innerHeight + document.documentElement.scrollTop + 1 >=
             document.documentElement.scrollHeight
         ) {
             loadMore();
         }
-    }, [loadMore, threshold]);
+    }, [loadMore]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
