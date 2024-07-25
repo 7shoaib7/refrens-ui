@@ -20,9 +20,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/:id" element={<CharacterProfile />} />
           <Route path="/episodes" element={<Episodes />} />
-          <Route path="/episodes/:episode" element={<EpisodeOrLocationCharacters />} />
+          <Route path="/episode/:id" element={<EpisodeOrLocationCharacters />} />
           <Route path="/locations" element={<Locations />} />
-          <Route path="/locations/:location" element={<EpisodeOrLocationCharacters />} />
+          <Route path="/location/:id" element={<EpisodeOrLocationCharacters />} />
         </Routes>
       </div>
     </Router>
