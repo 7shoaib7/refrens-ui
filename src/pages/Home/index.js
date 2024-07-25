@@ -48,7 +48,7 @@ const Home = () => {
     };
 
     const handleReset = () => {
-        if (status.length || gender.length || debouncedSearchValue.length || page !== 1 ) {
+        if (status.length || gender.length || debouncedSearchValue.length || species.length || page !== 1 ) {
             setStatus('');
             setGender('');
             setSpecies('');
