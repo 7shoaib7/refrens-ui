@@ -14,6 +14,7 @@ import { statusOptions, genderOptions, speciesOptions } from '../../constants/fi
 
 //services
 import {  getFilteredCharacters } from '../../services/rickAndMortyApi';
+import useInfiniteScroll from '../../custom/useInfiniteScroll';
 
 
 const Home = () => {
@@ -69,21 +70,14 @@ const Home = () => {
         fetchFilteredCharacterData();
     }, [debouncedSearchValue, status, species, gender, page]);
 
-    const handleInfiniteScroll = () => {
-        if (
-            window.innerHeight + document.documentElement.scrollTop + 1 >=
-            document.documentElement.scrollHeight
-        ) {
+
+   // Using the useInfiniteScroll hook to trigger fetchFilteredCharacterData callback
+        useInfiniteScroll(() => {
             if (page < 42) {
                 setPage((prevPage) => prevPage + 1);
             }
-        }
-    };
+        });
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleInfiniteScroll);
-        return () => window.removeEventListener('scroll', handleInfiniteScroll);
-    }, [page]);
 
 
     return (
