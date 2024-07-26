@@ -4,7 +4,7 @@
     margin: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     display: flex;
-    flex-direction: row; /* Consistent row direction */
+    flex-direction: row;
     gap: 1rem;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -51,17 +51,37 @@
 
 .episode-card-residents {
     display: flex;
-    flex-direction: column;
+    align-items: center; 
     gap: 0.5rem;
+    cursor: pointer;
+}
+
+.episode-card-icon {
+    color: rgb(255, 152, 0);
+    font-size: 1.2rem;
 }
 
 .episode-card-residents-title {
-    color: rgb(158, 158, 158);
+    color: rgb(245, 245, 245);
     font-size: 1rem;
     font-weight: 500;
 }
 
-.episode-card-residents-count {
+
+.location-card-residents {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.location-card-icon {
+    color: rgb(255, 152, 0);
+    font-size: 1.2rem;
+}
+
+.location-card-residents-title {
     color: rgb(245, 245, 245);
     font-size: 1rem;
+    font-weight: 500;
 }
