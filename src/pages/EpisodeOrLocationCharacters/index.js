@@ -12,7 +12,9 @@ import CharacterCard from '../../components/CharacterCard';
 const EpisodeOrLocationCharacters = () => {
   const { id } = useParams();
   const location = useLocation();
-  const [characterData, setCharacterData] = useState([])
+  const [characterData, setCharacterData] = useState([]);
+  const [locationDetails,setLocationDetails] = useState(null);
+  const [episodeDetails,setEpisodeDetails] = useState(null)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -35,11 +37,13 @@ const EpisodeOrLocationCharacters = () => {
       let allCharacters
       if (location.pathname.includes('/episode')) {
         response = await getEpisodeById(id);
+        setEpisodeDetails(response)
         allCharacters = response?.characters?.map(url =>
           url.split('/').pop()
         ) || [];
       } else if (location.pathname.includes('/location')) {
         response = await getLocationById(id);
+        setLocationDetails(response)
         allCharacters = response?.residents?.map(url =>
           url.split('/').pop()
         ) || [];
@@ -86,6 +90,10 @@ const EpisodeOrLocationCharacters = () => {
 
   return (
     <div className="characters-detail-page">
+      <div className="location-episode-desc">
+          {locationDetails && <h1>{locationDetails.name}</h1>}
+          {episodeDetails && <h1>{episodeDetails.name} - {episodeDetails.episode}</h1>}
+      </div>
       <div className="character-list">
         <Grid container spacing={2}>
           {characterData.length ? characterData.map((cardData) => (

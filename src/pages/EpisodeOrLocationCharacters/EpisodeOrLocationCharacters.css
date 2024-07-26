@@ -1,7 +1,12 @@
-.characters-detail-page{
+.characters-detail-page {
     margin-top: 4rem;
     min-height: 100vh;
     background: rgb(39, 43, 51);
     color: #fff;
     padding: 2rem;
+}
+
+.location-episode-desc {
+    padding: 0 2rem;
+    color: rgb(255, 152, 0) !important 
 }

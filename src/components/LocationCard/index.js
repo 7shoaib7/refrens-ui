@@ -12,7 +12,7 @@ const LocationCard = ({ id, name, type, dimension }) => {
 
     const handleViewResidents = (e) => {
         e.stopPropagation();
-        navigate(`/location/${id}/residents`);
+        navigate(`/location/${id}`);
     };
 
     return (
