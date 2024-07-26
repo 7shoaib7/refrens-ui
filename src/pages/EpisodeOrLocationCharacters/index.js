@@ -49,8 +49,10 @@ const EpisodeOrLocationCharacters = () => {
 
       const finalCharacters = await fetchAllCharacters(allCharacters)
 
-      if (finalCharacters.length) {
-        const final = finalCharacters.map((item) => {
+      const finalData = Array.isArray(finalCharacters) ? finalCharacters : [finalCharacters]
+
+      if (finalData.length) {
+        const final = finalData.map((item) => {
           delete item.episode
           return item
         })
@@ -63,6 +65,8 @@ const EpisodeOrLocationCharacters = () => {
       setLoading(false);
     }
   };
+
+
 
 
   useEffect(() => {
