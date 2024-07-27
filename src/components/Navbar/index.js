@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 //Mui-components
 import { AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -11,11 +11,12 @@ import rickAndMortyLogo from "../../assets/logo.png"
 
 
 const Navbar = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [path, setPath] = useState('/')
+    const [path, setPath] = useState(null)
 
     const handleDrawerToggle = (item) => {
         setDrawerOpen(!drawerOpen);
@@ -33,6 +34,19 @@ const Navbar = () => {
         { text: 'Episodes', link: '/episodes' },
         { text: 'Location', link: '/locations' },
     ];
+
+
+    useEffect(()=>{
+       if(location.pathname.includes('episode' )){
+        setPath('/episodes')
+       }
+       else if(location.pathname.includes('location')){
+        setPath('/locations')
+       }
+       else{
+        setPath('/')
+       }
+    },[])
 
     return (
         <AppBar position="static" className="navbar">
