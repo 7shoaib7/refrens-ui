@@ -24,7 +24,7 @@
     height: auto;
     object-fit: cover;
     border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
 }
 
 .character-card-description {
@@ -79,8 +79,8 @@
 
 @media (min-width: 600px) {
     .character-card {
-        flex-direction: row; 
-        height: 220px; 
+        flex-direction: row;
+        height: 220px;
     }
 
     .character-card-img-box {
@@ -88,10 +88,12 @@
     }
 
     .character-card-description {
-        width: 50%; 
+        width: 50%;
     }
 
     .card-image {
         height: 100%;
+        border-bottom-left-radius: 0.5rem;
+        border-top-right-radius: 0;
     }
 }
